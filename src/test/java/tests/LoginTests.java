@@ -6,7 +6,7 @@ import org.testng.Reporter;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.LoginPage;
-import pages.SecureAreaPage;
+import pages.DashboardPage;
 
 import static org.testng.Assert.assertTrue;
 
@@ -18,56 +18,53 @@ public class LoginTests extends BaseTest {
 	
     @Test(groups = "end2end")
     @Parameters({"user", "password"})
-    public void testSuccessfulLogin(String user, String password){
+    public void testSuccessfulSignIn(String user, String password){
     	
     	//Start timer
-        setTimestamp("testSuccessfulLogin");
+        setTimestamp("testSuccessfulSignIn");
         
-        LoginPage loginPage = homePage.clickFormAuthentication();
         loginPage.setUsername(user);
         Reporter.log("Enter username: " + user);
         log.debug("Once before all tests within this class");
         loginPage.setPassword(password);
         Reporter.log("Enter password: " + password);
-        SecureAreaPage secureAreaPage = loginPage.clickLoginButton();
-        secureAreaPage.getAlertText();
+        DashboardPage dashboardPage = loginPage.clickSignInButton();
+        dashboardPage.getHeaderText();
         
-        assertTrue(secureAreaPage.getAlertText()
-                        .contains("You logged into a secure area!")
-                , "Alert text is incorrect");
+        assertTrue(dashboardPage.getHeaderText()
+                        .contains("Dashboard")
+                , "Successful sign in!");
         
         //Report duration
-        Reporter.log("Test duration: " + getDurationInMillisFrom("testSuccessfulLogin") + " ms");
+        Reporter.log("Test duration: " + getDurationInMillisFrom("testSuccessfulSignIn") + " ms");
         
         //Log duration
-        log.debug(Long.toString(getDurationInMillisFrom("testSuccessfulLogin")));
-        System.out.println(getDurationInMillisFrom("testSuccessfulLogin"));
-        long maxDuration = 2000L;
+        log.debug(Long.toString(getDurationInMillisFrom("testSuccessfulSignIn")));
+        System.out.println(getDurationInMillisFrom("testSuccessfulSignIn"));
+        long maxDuration = 10000L;
         
-        assertTrue(maxDuration >= getDurationInMillisFrom("testSuccessfulLogin"));
+        assertTrue(maxDuration >= getDurationInMillisFrom("testSuccessfulSignIn"));
     }
 
     @Test(groups = "end2end")
     public void testSuccessfulLogin1() throws InterruptedException {
-        LoginPage loginPage = homePage.clickFormAuthentication();
-        loginPage.setUsername("tomsmith");
-        loginPage.setPassword("SuperSecretPassword!");
-        SecureAreaPage secureAreaPage = loginPage.clickLoginButton();
-        secureAreaPage.getAlertText();
-        assertTrue(secureAreaPage.getAlertText()
-                        .contains("You logged into a secure area!")
-                , "Alert text is incorrect");
+        loginPage.setUsername("cctestuser9@yopmail.com");
+        loginPage.setPassword("CCTest@2021");
+        DashboardPage dashboardPage = loginPage.clickSignInButton();
+        dashboardPage.getHeaderText();
+        assertTrue(dashboardPage.getHeaderText()
+                        .contains("Dashboard")
+                , "Successful sign in!");
     }
 
     @Test(groups = "end2end")
     public void testSuccessfulLogin2() throws InterruptedException {
-        LoginPage loginPage = homePage.clickFormAuthentication();
-        loginPage.setUsername("tomsmith");
-        loginPage.setPassword("SuperSecretPassword!");
-        SecureAreaPage secureAreaPage = loginPage.clickLoginButton();
-        secureAreaPage.getAlertText();
-        assertTrue(secureAreaPage.getAlertText()
-                        .contains("You logged into a secure area!")
-                , "Alert text is incorrect");
+        loginPage.setUsername("cctestuser9@yopmail.com");
+        loginPage.setPassword("CCTest@2021");
+        DashboardPage secureAreaPage = loginPage.clickSignInButton();
+        secureAreaPage.getHeaderText();
+        assertTrue(secureAreaPage.getHeaderText()
+                        .contains("Dashboard")
+                , "Successful sign in!");
     }
 }

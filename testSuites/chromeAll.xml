@@ -2,11 +2,11 @@
 <suite name="Tests" verbose="1" parallel="methods" thread-count="1">
 
     <test name="End2End Test">
-        <parameter name="url" value="https://the-internet.herokuapp.com/"></parameter>
+        <parameter name="url" value="https://mycc-staging.n13.ro/login"></parameter>
         <parameter name="driverPath" value="resources//chromedriver.exe"></parameter>
         <parameter name="browser" value="Chrome"></parameter>
-        <parameter name="user" value="tomsmith"></parameter>
-        <parameter name="password" value="SuperSecretPassword!"></parameter>
+        <parameter name="user" value="cctestuser9@yopmail.com"></parameter>
+        <parameter name="password" value="CCTest@2021"></parameter>
         <classes>
             <class name="tests.LoginTests"> </class>
         </classes>

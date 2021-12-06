@@ -16,12 +16,13 @@ import org.testng.annotations.Parameters;
 import com.microsoft.edge.seleniumtools.EdgeDriver;
 import com.microsoft.edge.seleniumtools.EdgeOptions;
 
-import pages.HomePage;
+import pages.LoginPage;
+
 
 public class BaseTest {
 
 	private WebDriver driver;
-	protected HomePage homePage;
+	protected LoginPage loginPage;
 
 	@BeforeMethod(alwaysRun = true)
 	@Parameters({ "driverPath", "browser", "url" })
@@ -57,7 +58,7 @@ public class BaseTest {
 		driver.get(url);
 		driver.manage().window().maximize();
 
-		homePage = new HomePage(driver);
+		loginPage = new LoginPage(driver);
 
 		Reporter.setCurrentTestResult(result);
 		Reporter.log("BeforeMethod");

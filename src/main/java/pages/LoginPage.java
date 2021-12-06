@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
     private WebDriver driver;
-    private By usernameField = By.id("username");
-    private By passwordField = By.id("password");
-    private By loginButton = By.cssSelector("#login button");
+    private By usernameField = By.cssSelector("form#kt_login_signin_form input[name='email']");
+    private By passwordField = By.cssSelector("form#kt_login_signin_form input[name='password']");
+    private By signInButton = By.cssSelector(".btn.btn-primary.font-size-h6.font-weight-bolder.px-15.py-3");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -24,8 +24,8 @@ public class LoginPage {
         driver.findElement(passwordField).sendKeys(password);
     }
 
-    public SecureAreaPage clickLoginButton(){
-        driver.findElement(loginButton).click();
-        return new SecureAreaPage(driver);
+    public DashboardPage clickSignInButton(){
+        driver.findElement(signInButton).click();
+        return new DashboardPage(driver);
     }
 }
