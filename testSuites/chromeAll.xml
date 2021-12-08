@@ -8,7 +8,7 @@
         <parameter name="user" value="cctestuser9@yopmail.com"></parameter>
         <parameter name="password" value="CCTest@2021"></parameter>
         <classes>
-            <class name="tests.LoginTests"> </class>
+            <class name="tests.WorkLogTests"> </class>
         </classes>
     </test>
 </suite>

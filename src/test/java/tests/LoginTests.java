@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.testng.Reporter;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pages.LoginPage;
 import pages.DashboardPage;
 
 import static org.testng.Assert.assertTrue;
@@ -61,10 +60,12 @@ public class LoginTests extends BaseTest {
     public void testSuccessfulLogin2() throws InterruptedException {
         loginPage.setUsername("cctestuser9@yopmail.com");
         loginPage.setPassword("CCTest@2021");
-        DashboardPage secureAreaPage = loginPage.clickSignInButton();
-        secureAreaPage.getHeaderText();
-        assertTrue(secureAreaPage.getHeaderText()
+        DashboardPage dashboardPage = loginPage.clickSignInButton();
+        dashboardPage.getHeaderText();
+        assertTrue(dashboardPage.getHeaderText()
                         .contains("Dashboard")
                 , "Successful sign in!");
     }
+    
+    
 }
