@@ -20,11 +20,9 @@ public class DashboardPage {
 	private By projectSelect = By.xpath("//*[@id=\"project-input\"]/option[2]");
 	private By task = By.xpath("//select[@id='task-input']");
 	private By taskSelect = By.xpath("//*[@id=\"task-input\"]/option[2]");
-	private By timePick = By.xpath("//span[@class=\"vue__time-picker time-picker\"]");
-	private By hoursPickModal = By.xpath("//ul[@class=\"hours\"]");
+	private By timePick = By.xpath("//input[@placeholder=\"HH:mm\"]");
 	private By hoursPick = By.xpath("//li[@data-key=\"02\"]");
-	private By minutesPickModal = By.xpath("//ul[@class=\"minutes\"]");
-	private By minutesPick = By.xpath("//li[@data-key=\"00\"]");
+	private By minutesPick = By.xpath("//ul[2]//li[@data-key=\"30\"]");
 	private By comment = By.xpath("//textarea[@id='comments-minutes-input']");
 	private By saveButton = By.xpath("//button[@class=\"btn font-weight-bolder font-size-sm btn-primary\"]");
 	private By savedSuccess = By.xpath("//div[@class=\"layout column\"]");
@@ -67,13 +65,12 @@ public class DashboardPage {
 		driver.findElement(taskSelect).click();
 		
 		driver.findElement(timePick).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hoursPickModal));
 		driver.findElement(hoursPick).click();
 		
 		driver.findElement(timePick).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(minutesPickModal));
 		driver.findElement(minutesPick).click();
 		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(comment));
 		driver.findElement(comment).click();
 
 		driver.findElement(comment).sendKeys("Dummy test for add work log Dashboard (automated)");
