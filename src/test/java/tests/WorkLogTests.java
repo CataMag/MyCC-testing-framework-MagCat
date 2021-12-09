@@ -27,7 +27,7 @@ public class WorkLogTests extends Base{
                 , "Successful duplicate work log");
     }
 	
-	/*@Test(groups = "end2end")
+	@Test(groups = "end2end")
 	public void testAddWorkLog() throws InterruptedException {
 		
         loginPage.setUsername("cctestuser9@yopmail.com");
@@ -38,5 +38,5 @@ public class WorkLogTests extends Base{
         assertTrue(workLogPage.addWorkLog()
                         .contains("Work log created successfully!")
                 , "Successful duplicate work log");
-    }*/
+    }
 }

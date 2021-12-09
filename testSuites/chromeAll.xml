@@ -9,7 +9,7 @@
         <parameter name="password" value="CCTest@2021"></parameter>
         <parameter name="implicitWait" value="4"></parameter>
         <classes>
-            <class name="tests.WorkLogTests"> </class>
+            <class name="tests.DashboardTests"> </class>
         </classes>
     </test>
 </suite>

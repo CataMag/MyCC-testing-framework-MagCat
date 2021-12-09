@@ -1,7 +1,9 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -11,6 +13,21 @@ public class DashboardPage {
     private By timesheetMenu = By.cssSelector("li:nth-of-type(3) > .menu-link.menu-toggle > .menu-text");
     private By workLog = By.xpath("//*[@id=\"kt_aside_menu\"]/div/ul/li[3]/div/ul/li[2]/a/span");
     
+    private By workLogArea = By.xpath("//*[@class=\"position-absolute bg-light\"]");
+    private By addWorkLog = By.xpath("//*[@id=\"dashboard-step-4\"]/div/div[2]/div[3]/button");
+    private By addModal = By.xpath("//*[@id=\"logWorkModal___BV_modal_header_\"]");
+	private By project = By.xpath("//select[@id='project-input']");
+	private By projectSelect = By.xpath("//*[@id=\"project-input\"]/option[2]");
+	private By task = By.xpath("//select[@id='task-input']");
+	private By taskSelect = By.xpath("//*[@id=\"task-input\"]/option[2]");
+	private By timePick = By.xpath("//span[@class=\"vue__time-picker time-picker\"]");
+	private By hoursPickModal = By.xpath("//ul[@class=\"hours\"]");
+	private By hoursPick = By.xpath("//li[@data-key=\"02\"]");
+	private By minutesPickModal = By.xpath("//ul[@class=\"minutes\"]");
+	private By minutesPick = By.xpath("//li[@data-key=\"00\"]");
+	private By comment = By.xpath("//textarea[@id='comments-minutes-input']");
+	private By saveButton = By.xpath("//button[@class=\"btn font-weight-bolder font-size-sm btn-primary\"]");
+	private By savedSuccess = By.xpath("//div[@class=\"layout column\"]");
 
     public DashboardPage(WebDriver driver){
         this.driver = driver;
@@ -30,5 +47,41 @@ public class DashboardPage {
 		driver.findElement(workLog).click();
 		
 		return new WorkLogPage(driver);
+    }
+    
+    public String addWorkLogFromDashboard() {
+    	WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(workLogArea));
+		
+		JavascriptExecutor jse=(JavascriptExecutor) driver;
+		WebElement logWorkButton = driver.findElement(addWorkLog);
+		jse.executeScript("arguments[0].click()", logWorkButton);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(addModal));
+		
+		driver.findElement(project).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(projectSelect));
+		driver.findElement(projectSelect).click();
+		
+		driver.findElement(task).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(taskSelect));
+		driver.findElement(taskSelect).click();
+		
+		driver.findElement(timePick).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hoursPickModal));
+		driver.findElement(hoursPick).click();
+		
+		driver.findElement(timePick).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(minutesPickModal));
+		driver.findElement(minutesPick).click();
+		
+		driver.findElement(comment).click();
+
+		driver.findElement(comment).sendKeys("Dummy test for add work log Dashboard (automated)");
+		
+		
+		driver.findElement(saveButton).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(savedSuccess));
+		
+		return driver.findElement(savedSuccess).getText();
     }
 }
