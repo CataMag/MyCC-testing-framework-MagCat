@@ -1,6 +1,6 @@
 package tests;
 
-import base.BaseTest;
+import base.Base;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.Reporter;
 import org.testng.annotations.Parameters;
@@ -13,7 +13,7 @@ import static utils.Timers.getDurationInMillisFrom;
 import static utils.Timers.setTimestamp;
 
 @Slf4j
-public class LoginTests extends BaseTest {
+public class LoginTests extends Base {
 	
     @Test(groups = "end2end")
     @Parameters({"user", "password"})

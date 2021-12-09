@@ -1,5 +1,7 @@
 package base;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -19,14 +21,14 @@ import com.microsoft.edge.seleniumtools.EdgeOptions;
 import pages.LoginPage;
 
 
-public class BaseTest {
+public class Base {
 
 	private WebDriver driver;
 	protected LoginPage loginPage;
 
 	@BeforeMethod(alwaysRun = true)
-	@Parameters({ "driverPath", "browser", "url" })
-	public void goHome(ITestResult result, String driverPath, String browser, String url) throws Exception {
+	@Parameters({ "driverPath", "browser", "url" , "implicitWait"})
+	public void goHome(ITestResult result, String driverPath, String browser, String url, long implicitWait) throws Exception {
 
 		// Check if parameter passed from TestNG is 'Chrome'
 		if (browser.equalsIgnoreCase("Chrome")) {
@@ -53,7 +55,7 @@ public class BaseTest {
 			throw new Exception("Browser is not supported");
 		}
 
-		// driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(implicitWait, TimeUnit.SECONDS);
 
 		driver.get(url);
 		driver.manage().window().maximize();

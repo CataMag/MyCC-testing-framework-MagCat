@@ -17,14 +17,12 @@ public class DashboardPage {
     }
 
     public String getHeaderText(){
-    	sleep(3000);
     	WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(dashboardItem));
         return driver.findElement(dashboardItem).getText();
     }
     
     public WorkLogPage goToWorkLog() {
-    	sleep(3000);
     	driver.findElement(timesheetMenu).click();
     	
     	WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -33,12 +31,4 @@ public class DashboardPage {
 		
 		return new WorkLogPage(driver);
     }
-    
-    private void sleep(int x) {
-		try {
-			Thread.sleep(x);
-		}catch(InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
 }

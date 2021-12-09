@@ -4,11 +4,11 @@ import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.Test;
 
-import base.BaseTest;
+import base.Base;
 import pages.DashboardPage;
 import pages.WorkLogPage;
 
-public class WorkLogTests extends BaseTest{
+public class WorkLogTests extends Base{
 	
 	@Test(groups = "end2end")
     public void testDuplicateWorkLog() throws InterruptedException {
@@ -18,13 +18,16 @@ public class WorkLogTests extends BaseTest{
         
         DashboardPage dashboardPage = loginPage.clickSignInButton();
         WorkLogPage workLogPage = dashboardPage.goToWorkLog();
-        System.out.println(workLogPage.duplicateWorkLog());
-        assertTrue(workLogPage.duplicateWorkLog()
+        
+        String successfulMessageCreatedWorkLog = workLogPage.duplicateWorkLog();
+        
+        System.out.println(successfulMessageCreatedWorkLog);
+        assertTrue(successfulMessageCreatedWorkLog
                         .contains("Work log created successfully!")
                 , "Successful duplicate work log");
     }
 	
-	@Test(groups = "end2end")
+	/*@Test(groups = "end2end")
 	public void testAddWorkLog() throws InterruptedException {
 		
         loginPage.setUsername("cctestuser9@yopmail.com");
@@ -35,5 +38,5 @@ public class WorkLogTests extends BaseTest{
         assertTrue(workLogPage.addWorkLog()
                         .contains("Work log created successfully!")
                 , "Successful duplicate work log");
-    }
+    }*/
 }
